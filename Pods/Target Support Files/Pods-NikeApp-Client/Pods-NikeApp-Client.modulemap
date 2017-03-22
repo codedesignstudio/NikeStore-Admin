@@ -1,0 +1,6 @@
+framework module Pods_NikeApp_Client {
+  umbrella header "Pods-NikeApp-Client-umbrella.h"
+
+  export *
+  module * { export * }
+}
