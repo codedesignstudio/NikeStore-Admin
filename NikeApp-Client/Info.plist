@@ -2,18 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Need microphone access for uploading videos</string>
-    <key>NSCameraUsageDescription</key>
-    <string>Need camera access for uploading Images</string>
-    <key>NSLocationUsageDescription</key>
-    <string>Need location access for updating nearby friends</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>This app will use your location to show you cool stuff near you.</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>NeedLibrary access for uploading Images</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Need microphone access for uploading videos</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Need camera access for uploading Images</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Need location access for updating nearby friends</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app will use your location to show you cool stuff near you.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>NeedLibrary access for uploading Images</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

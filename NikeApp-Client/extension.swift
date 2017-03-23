@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 extension UIView {
     
@@ -36,3 +38,31 @@ extension UIColor {
     }
 }
 
+extension CategoryController {
+    func getCategories(){
+        categories = []
+        LLSpinner.spin()
+        guard let toke = token else{return}
+        let headers:HTTPHeaders = ["token": toke]
+        Alamofire.request(CATEGORIES, method: .get, parameters: nil, encoding: JSONEncoding(options: []), headers: headers).responseJSON { (response) in
+            if response.response?.statusCode == 200{
+                LLSpinner.stop()
+                let jsonObject = JSON(response.result.value)
+                let categoriess = jsonObject["categories"].array
+                for category in categoriess! {
+                    let name = category["name"].string
+                    let image_url = category["attachment_url"].string
+                    let newCategory = Category(categoryName: name!, categoryId: nil, categoryImage: image_url!, numberOfProducts: nil)
+                    self.categories.append(newCategory)
+                    print(name)
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                        
+                    }
+                }
+            }else{
+                LLSpinner.stop()
+            }
+        }
+    }
+}

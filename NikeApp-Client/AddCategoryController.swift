@@ -66,7 +66,7 @@ class AddCategoryController: UIViewController,UIImagePickerControllerDelegate {
     
     let addCategory: UIButton = {
         let btn = UIButton()
-        btn.setTitle("Sign In", for: .normal)
+        btn.setTitle("Create Category", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = .black
         btn.translatesAutoresizingMaskIntoConstraints = false
@@ -79,6 +79,7 @@ class AddCategoryController: UIViewController,UIImagePickerControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         token = UserDefaults.standard.string(forKey: "token")
+        
         let imageV = UIImageView(frame: UIScreen.main.bounds)
         imageV.image = UIImage(named: "nike3")
         view.insertSubview(imageV, at: 0)
@@ -123,7 +124,7 @@ class AddCategoryController: UIViewController,UIImagePickerControllerDelegate {
     func addCat(){
         LLSpinner.spin()
         var url = "https://api.imgur.com/3/upload"
-        let imageData = UIImageJPEGRepresentation(selectedImage.image!,1)
+        let imageData = UIImagePNGRepresentation(selectedImage.image!)
         let str64 = imageData?.base64EncodedString()
         var params:Parameters = ["image": str64!]
         var headers:HTTPHeaders = ["Authorization": "Client-ID aab3505f42b5d63"]
@@ -137,6 +138,17 @@ class AddCategoryController: UIViewController,UIImagePickerControllerDelegate {
                 Alamofire.request(CREATE_CATEGORY, method: .post, parameters: params2, encoding: JSONEncoding(options: []), headers: nil).responseJSON(completionHandler: { (response) in
                     LLSpinner.stop()
                     print(response.result.value)
+                    if response.response?.statusCode != 200{
+                        let alert = UIAlertController(title: "", message: "Category Already exist", preferredStyle: .alert)
+                        let cancelBtn = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                        alert.addAction(cancelBtn)
+                        self.present(alert, animated: true, completion: nil)
+                    }else{
+                        let vcc = AppPageTabBarController(viewControllers: [CategoryController(),ProductController()], selectedIndex: 0)
+                        vcc.pageTabBarAlignment = .top
+                        let vc = UINavigationController(rootViewController: vcc)
+                        self.present(vc, animated: false, completion: nil)
+                    }
                 })
             }
         })

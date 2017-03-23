@@ -12,3 +12,4 @@ let BASE = "https://nikeminimalist.herokuapp.com/api/v1"
 
 let AUTH = "\(BASE)/clients/login"
 let CREATE_CATEGORY = "\(BASE)/categories/create"
+let CATEGORIES = "\(BASE)/categories"

@@ -8,6 +8,7 @@
 
 import UIKit
 import Material
+import Kingfisher
 
 struct Category{
     var categoryName:String?
@@ -23,6 +24,7 @@ class CategoryController: UIViewController, UICollectionViewDelegate,UICollectio
         preparePageTabBarItem()
 
     }
+    var token:String?
     var categories = [Category]()
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -39,6 +41,7 @@ class CategoryController: UIViewController, UICollectionViewDelegate,UICollectio
     
     open override func viewDidLoad() {
         super.viewDidLoad()
+        token = UserDefaults.standard.string(forKey: "token")
         view.backgroundColor = .white
         view.addSubview(collectionView)
         collectionView.delegate = self
@@ -54,15 +57,13 @@ class CategoryController: UIViewController, UICollectionViewDelegate,UICollectio
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.headerReferenceSize = CGSize(width: view.frame.width, height: 50)
         }
-
-        categories.append(Category(categoryName: "Bra", categoryId: 1, categoryImage: "bra", numberOfProducts: 20))
-        categories.append(Category(categoryName: "Pants", categoryId: 1, categoryImage: "pants", numberOfProducts: 50))
-        categories.append(Category(categoryName: "Shoes", categoryId: 1, categoryImage: "shoe", numberOfProducts: 10))
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        print("GOT HERE")
+        categories = []
+        getCategories()
     }
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! CatHeader
         header.parentViewController = self
@@ -97,10 +98,11 @@ class CatCell: UICollectionViewCell {
     
     var category: Category?{
         didSet{
-            guard let categoryN = category?.categoryName, let catImage = category?.categoryImage, let productN = category?.numberOfProducts else{return}
-            categoryName.text = categoryN
-            categoryImage.image = UIImage(named: catImage)
-            numberOfProducts.text = "\(productN) Products"
+//            guard let categoryN = category?.categoryName, let catImage = URL(string: (category?.categoryImage)!), let productN = category?.numberOfProducts else{return}
+            categoryName.text = category?.categoryName?.uppercased()
+            let urll = URL(string: (category?.categoryImage)!)
+            categoryImage.kf.setImage(with: urll)
+            numberOfProducts.text = "9 Products"
         }
     }
     
@@ -139,17 +141,17 @@ class CatCell: UICollectionViewCell {
             categoryName.leftAnchor.constraint(equalTo: leftAnchor,constant: 8),
             categoryName.topAnchor.constraint(equalTo: topAnchor),
             categoryName.widthAnchor.constraint(equalTo: widthAnchor),
-            categoryName.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/3),
+            categoryName.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/2),
+            
+            numberOfProducts.leftAnchor.constraint(equalTo: leftAnchor,constant: 5),
+            numberOfProducts.topAnchor.constraint(equalTo: categoryName.bottomAnchor, constant: -15),
+            numberOfProducts.widthAnchor.constraint(equalTo: widthAnchor),
             
             categoryImage.topAnchor.constraint(equalTo: categoryName.bottomAnchor),
             categoryImage.rightAnchor.constraint(equalTo: rightAnchor),
             categoryImage.widthAnchor.constraint(equalTo: widthAnchor),
-            categoryImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/3),
-            
-            numberOfProducts.topAnchor.constraint(equalTo: categoryImage.bottomAnchor),
-            numberOfProducts.leftAnchor.constraint(equalTo: leftAnchor,constant: 8),
-            numberOfProducts.widthAnchor.constraint(equalTo: widthAnchor),
-            numberOfProducts.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/3),
+            categoryImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/2),
+
         ])
     }
     
