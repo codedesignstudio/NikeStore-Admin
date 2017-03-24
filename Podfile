@@ -12,6 +12,7 @@ pod 'IQKeyboardManagerSwift'
 pod 'Material'
 pod ’SwiftyJSON’
 pod ‘Kingfisher’
+
 end
 post_install do |installer|
   installer.pods_project.targets.each do |target|

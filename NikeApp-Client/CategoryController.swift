@@ -12,25 +12,17 @@ import Kingfisher
 
 struct Category{
     var categoryName:String?
-    var categoryId:Int?
+    var categoryId:String?
     var categoryImage:String?
-    var numberOfProducts: Int?
+    var numberOfProducts: String?
 }
 
 
 class CategoryController: UIViewController, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        preparePageTabBarItem()
 
-    }
     var token:String?
     var categories = [Category]()
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        preparePageTabBarItem()
-    }
-    
+
     let collectionView: UICollectionView = {
         let flow = UICollectionViewFlowLayout()
         let col = UICollectionView(frame: .zero, collectionViewLayout: flow)
@@ -42,6 +34,13 @@ class CategoryController: UIViewController, UICollectionViewDelegate,UICollectio
     open override func viewDidLoad() {
         super.viewDidLoad()
         token = UserDefaults.standard.string(forKey: "token")
+        title = "Nike"
+        if UserDefaults.standard.bool(forKey: "isLoggedIn") != true {
+            self.present(LoginViewController(), animated: false, completion: nil)
+        }
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+
         view.backgroundColor = .white
         view.addSubview(collectionView)
         collectionView.delegate = self
@@ -67,6 +66,7 @@ class CategoryController: UIViewController, UICollectionViewDelegate,UICollectio
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! CatHeader
         header.parentViewController = self
+        
         return header
     }
 
@@ -92,6 +92,14 @@ class CategoryController: UIViewController, UICollectionViewDelegate,UICollectio
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return CGFloat(0)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = ProductController(collectionViewLayout: UICollectionViewFlowLayout())
+        vc.category_id = categories[indexPath.row].categoryId!
+        vc.categoryName = categories[indexPath.row].categoryName
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 class CatCell: UICollectionViewCell {
@@ -189,11 +197,4 @@ class CatHeader: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-}
-
-extension CategoryController {
-    fileprivate func preparePageTabBarItem() {
-        pageTabBarItem.title = "Category"
-        pageTabBarItem.titleColor = Color.blueGrey.base
-    }
 }

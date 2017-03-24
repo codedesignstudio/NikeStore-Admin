@@ -21,11 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        let vcc = AppPageTabBarController(viewControllers: [CategoryController(),ProductController()], selectedIndex: 0)
-        vcc.pageTabBarAlignment = .top
-        let vc = UINavigationController(rootViewController: vcc)
+        let vc = UINavigationController(rootViewController: CategoryController())
 
         window?.rootViewController = vc
+        UINavigationBar.appearance().tintColor = .black
         
         return true
     }

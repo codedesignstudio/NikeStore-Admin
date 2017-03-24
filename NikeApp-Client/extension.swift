@@ -52,7 +52,9 @@ extension CategoryController {
                 for category in categoriess! {
                     let name = category["name"].string
                     let image_url = category["attachment_url"].string
-                    let newCategory = Category(categoryName: name!, categoryId: nil, categoryImage: image_url!, numberOfProducts: nil)
+                    let id = category["objectId"].string
+                    
+                    let newCategory = Category(categoryName: name!, categoryId: id!, categoryImage: image_url!, numberOfProducts: nil)
                     self.categories.append(newCategory)
                     print(name)
                     DispatchQueue.main.async {
