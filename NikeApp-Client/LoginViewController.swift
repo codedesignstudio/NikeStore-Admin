@@ -60,9 +60,7 @@ class LoginViewController: UIViewController {
                 let token = jsonObject["token"].string
                 UserDefaults.standard.set(token, forKey: "token")
                 UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                let vcc = AppPageTabBarController(viewControllers: [CategoryController(),ProductController()], selectedIndex: 0)
-                vcc.pageTabBarAlignment = .top
-                let vc = UINavigationController(rootViewController: vcc)
+                let vc = UINavigationController(rootViewController: CategoryController())
                 self.present(vc, animated: false, completion: nil)
             }else{
                 print(JSON(response.result.value))
@@ -72,7 +70,7 @@ class LoginViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
         let imageV = UIImageView(frame: UIScreen.main.bounds)
         imageV.image = UIImage(named: "nike")
         view.insertSubview(imageV, at: 0)

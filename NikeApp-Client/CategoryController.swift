@@ -59,7 +59,6 @@ class CategoryController: UIViewController, UICollectionViewDelegate,UICollectio
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        categories = []
         getCategories()
     }
     
@@ -159,7 +158,6 @@ class CatCell: UICollectionViewCell {
             categoryImage.rightAnchor.constraint(equalTo: rightAnchor),
             categoryImage.widthAnchor.constraint(equalTo: widthAnchor),
             categoryImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/2),
-
         ])
     }
     

@@ -8,18 +8,27 @@
 
 import UIKit
 import Material
-import GSKStretchyHeaderView
+import Alamofire
+import SwiftyJSON
+import Kingfisher
+
+struct Product{
+    var name:String?
+    var image:String?
+    var price:String?
+}
 
 
 class ProductController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var category_id:String?
     var categoryName:String?
-    
+    var token:String?
+    var products = [Product]()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        print(category_id)
+        token = UserDefaults.standard.string(forKey: "token")
         view.backgroundColor = .white
         collectionView?.backgroundColor = .white
         collectionView?.register(ProductCell.self, forCellWithReuseIdentifier: "product")
@@ -29,8 +38,15 @@ class ProductController: UICollectionViewController, UICollectionViewDelegateFlo
         }
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addProduct))
     }
+    override func viewWillAppear(_ animated: Bool) {
+        getProducts()
+    }
     func addProduct(){
+        let vcc = AddProductController()
+        vcc.category_id = category_id
+        let vc = UINavigationController(rootViewController: vcc)
         
+        self.present(vc, animated: true, completion: nil)
     }
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let head = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "productHeader", for: indexPath) as! ProductHeader
@@ -39,11 +55,11 @@ class ProductController: UICollectionViewController, UICollectionViewDelegateFlo
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return products.count
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "product", for: indexPath) as! ProductCell
-        
+        cell.product = products[indexPath.row]
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -62,9 +78,47 @@ class ProductController: UICollectionViewController, UICollectionViewDelegateFlo
 
 }
 class ProductCell: UICollectionViewCell {
+    
+    var product: Product?{
+        didSet{
+            productName.text = product?.name!
+            let img = URL(string: (product?.image!)!)
+            productImage.kf.setImage(with: img)
+        }
+    }
+    
+    let productName: UILabel = {
+        let lab = UILabel()
+        lab.font = UIFont.boldSystemFont(ofSize: 15)
+        lab.textColor = .black
+        lab.translatesAutoresizingMaskIntoConstraints = false
+        lab.textAlignment = .center
+        return lab
+    }()
+    let productImage: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFit
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
+    
    override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .randomColor()
+        addSubview(productName)
+        addSubview(productImage)
+        NSLayoutConstraint.activate([
+            productName.leftAnchor.constraint(equalTo: leftAnchor,constant: 8),
+            productName.topAnchor.constraint(equalTo: topAnchor),
+            productName.widthAnchor.constraint(equalTo: widthAnchor),
+            productName.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/2),
+        
+            productImage.topAnchor.constraint(equalTo: productName.bottomAnchor),
+            productImage.rightAnchor.constraint(equalTo: rightAnchor),
+            productImage.widthAnchor.constraint(equalTo: widthAnchor),
+            productImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/2),
+        ])
+
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -79,7 +79,6 @@ class AddCategoryController: UIViewController,UIImagePickerControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         token = UserDefaults.standard.string(forKey: "token")
-        
         let imageV = UIImageView(frame: UIScreen.main.bounds)
         imageV.image = UIImage(named: "nike3")
         view.insertSubview(imageV, at: 0)
@@ -144,9 +143,8 @@ class AddCategoryController: UIViewController,UIImagePickerControllerDelegate {
                         alert.addAction(cancelBtn)
                         self.present(alert, animated: true, completion: nil)
                     }else{
-                        let vcc = AppPageTabBarController(viewControllers: [CategoryController(),ProductController()], selectedIndex: 0)
-                        vcc.pageTabBarAlignment = .top
-                        let vc = UINavigationController(rootViewController: vcc)
+
+                        let vc = UINavigationController(rootViewController: CategoryController())
                         self.present(vc, animated: false, completion: nil)
                     }
                 })
