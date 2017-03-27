@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ChameleonFramework.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>IQKeyboardManagerSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,11 +57,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>156FC459C34952E0E9B6FF213165120E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>3778B8C2CC3D0E1D353FFFB9A1120B81</key>
 		<dict>
 			<key>primary</key>
@@ -72,6 +72,16 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>698F207C4713DC969BF7CD00F0D385CD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>76BD4592010354D6C23D6ECCA20D83A8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>808BF1AAB30340347945199AA24226EB</key>
 		<dict>
 			<key>primary</key>
@@ -82,17 +92,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>BA66CA1C88ED8D95890C4550D3EC90A3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C4944FEC314D1A66588651D006273ADE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D5208A0EB8EBD687BDAAD7129E5F3B54</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E35D6C73F58F34CED230ED723D43EF65</key>
+		<key>CAD315F6D037107E1385CBD584E23230</key>
 		<dict>
 			<key>primary</key>
 			<true/>

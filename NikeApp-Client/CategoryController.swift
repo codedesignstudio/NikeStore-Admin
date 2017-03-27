@@ -9,6 +9,7 @@
 import UIKit
 import Material
 import Kingfisher
+import ChameleonFramework
 
 struct Category{
     var categoryName:String?
@@ -139,7 +140,7 @@ class CatCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .randomColor()
+        backgroundColor = UIColor(randomFlatColorOf:.light)
         addSubview(categoryName)
         addSubview(numberOfProducts)
         addSubview(categoryImage)

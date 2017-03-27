@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E35D6C73F58F34CED230ED723D43EF65"
+               BlueprintIdentifier = "CAD315F6D037107E1385CBD584E23230"
                BuildableName = "Pods_NikeApp_Client.framework"
                BlueprintName = "Pods-NikeApp-Client"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E35D6C73F58F34CED230ED723D43EF65"
+            BlueprintIdentifier = "CAD315F6D037107E1385CBD584E23230"
             BuildableName = "Pods_NikeApp_Client.framework"
             BlueprintName = "Pods-NikeApp-Client"
             ReferencedContainer = "container:Pods.xcodeproj">

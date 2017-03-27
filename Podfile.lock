@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (4.4.0)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
   - IQKeyboardManagerSwift (4.0.8)
   - Kingfisher (3.5.2)
   - Material (2.5.2):
@@ -10,20 +13,31 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - IQKeyboardManagerSwift
   - Kingfisher
   - Material
   - SwiftyJSON
   - TextFieldEffects
 
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: acc480fbe023c6e5fe40f68593f4a70a8c4c7ad5
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
   Kingfisher: 9950e382c500b6834ce004c7c4131c444e90c3a1
   Material: 00ae261fa04dd3f3f8584d07e44ac658fa1bc6fd
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   TextFieldEffects: faa47d428ee8eafb781a8413ac4345420d2328c4
 
-PODFILE CHECKSUM: 5629f3f07217d7e6c00783df1df8b7a718ab044a
+PODFILE CHECKSUM: 3e5c4264a0e93e7cd6ff62e66aa541e4924400e1
 
 COCOAPODS: 1.0.1

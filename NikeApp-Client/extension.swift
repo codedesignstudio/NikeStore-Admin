@@ -103,7 +103,6 @@ extension AddProductController {
             }
         }
     }
-    
 }
 
 
@@ -118,6 +117,7 @@ extension ProductController{
             if response.response?.statusCode == 200{
                 LLSpinner.stop()
                 let jsonObject = JSON(response.result.value)
+                print(jsonObject)
                 let productss = jsonObject["products"].array
                 for product in productss!{
                     let images = product["images"].arrayObject

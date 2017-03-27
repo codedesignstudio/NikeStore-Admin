@@ -18,7 +18,6 @@ struct Product{
     var price:String?
 }
 
-
 class ProductController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var category_id:String?
@@ -27,6 +26,7 @@ class ProductController: UICollectionViewController, UICollectionViewDelegateFlo
     var products = [Product]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.topItem?.title = ""
         view.backgroundColor = .white
         token = UserDefaults.standard.string(forKey: "token")
         view.backgroundColor = .white
@@ -62,10 +62,11 @@ class ProductController: UICollectionViewController, UICollectionViewDelegateFlo
         cell.product = products[indexPath.row]
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenRect: CGRect = UIScreen.main.bounds
         let screenWidth: Double = Double(screenRect.size.width)
-        let cellWidth: Double = screenWidth / 2.0
+        let cellWidth: Double = screenWidth / 3.0
         var size = CGSize(width: CGFloat(cellWidth), height: CGFloat(cellWidth))
         return size
     }
@@ -89,7 +90,7 @@ class ProductCell: UICollectionViewCell {
     
     let productName: UILabel = {
         let lab = UILabel()
-        lab.font = UIFont.boldSystemFont(ofSize: 15)
+        lab.font = UIFont.systemFont(ofSize: 13)
         lab.textColor = .black
         lab.translatesAutoresizingMaskIntoConstraints = false
         lab.textAlignment = .center
@@ -104,19 +105,18 @@ class ProductCell: UICollectionViewCell {
     
    override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .randomColor()
+        backgroundColor = .white
         addSubview(productName)
         addSubview(productImage)
         NSLayoutConstraint.activate([
-            productName.leftAnchor.constraint(equalTo: leftAnchor,constant: 8),
-            productName.topAnchor.constraint(equalTo: topAnchor),
+            productName.centerXAnchor.constraint(equalTo: centerXAnchor),
+            productName.bottomAnchor.constraint(equalTo: bottomAnchor),
             productName.widthAnchor.constraint(equalTo: widthAnchor),
-            productName.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/2),
-        
-            productImage.topAnchor.constraint(equalTo: productName.bottomAnchor),
-            productImage.rightAnchor.constraint(equalTo: rightAnchor),
+            
+            productImage.centerXAnchor.constraint(equalTo: centerXAnchor),
+            productImage.bottomAnchor.constraint(equalTo: productName.topAnchor),
             productImage.widthAnchor.constraint(equalTo: widthAnchor),
-            productImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/2),
+            productImage.heightAnchor.constraint(equalTo: heightAnchor),
         ])
 
     }
@@ -138,13 +138,13 @@ class ProductHeader: UICollectionViewCell {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 30)
-        label.textColor = .white
+        label.textColor = .black
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .randomColor()
+        backgroundColor = .white
         addSubview(categoryText)
         addConstraintsWithFormat("H:|[v0]|", views: categoryText)
         addConstraintsWithFormat("V:|[v0]|", views: categoryText)
