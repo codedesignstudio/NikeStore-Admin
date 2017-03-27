@@ -29,4 +29,9 @@ iOS client app for Nike Store
 - open terminal `cd` to the directory and run `pod install`
 - open Xcode <kbd>COMMAND</kbd> + <kbd>R</kbd>
 
+
 ## Design
+
+
+
+[Momoh Silm](https://twitter.com/m_silm)
