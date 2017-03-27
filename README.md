@@ -19,7 +19,7 @@ iOS client app for Nike Store
 ## App Link
 
 
-[NikeStore App]()
+[Client App](https://github.com/codedesignstudio/NikeStore-Client)
 
 
 ## ScreenShots
