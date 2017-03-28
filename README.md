@@ -36,7 +36,7 @@ iOS client app for Nike Store
 - open Xcode <kbd>COMMAND</kbd> + <kbd>R</kbd>
 
 
-##Contact
+## Contact
 
 Contact [@shaggy](https://twitter.com/___shaggy_)
 
