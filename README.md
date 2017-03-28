@@ -19,7 +19,13 @@ iOS client app for Nike Store
 ## App Link
 
 
-[NikeStore App]()
+[Client App](https://github.com/codedesignstudio/NikeStore-Client)
+
+
+## ScreenShots
+
+<img src="/assets/1.png" width="400" height="400"><img src="/assets/2.png" width="400" height="400"><img src="/assets/3.png" width="400" height="400">
+
 
 
 
@@ -28,6 +34,11 @@ iOS client app for Nike Store
 - `open NikeStore-Admin/NikeStore-Admin.xcworkspace`
 - open terminal `cd` to the directory and run `pod install`
 - open Xcode <kbd>COMMAND</kbd> + <kbd>R</kbd>
+
+
+## Contact
+
+Contact [@shaggy](https://twitter.com/___shaggy_)
 
 
 ## Design
